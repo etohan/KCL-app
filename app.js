@@ -5,8 +5,12 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var boardsRouter = require('./routes/boards');
+var electric_usersRouter = require('./routes/electri_users');
+var electric_boardsRouter = require('./routes/electri_boards');
+var electron_usersRouter = require('./routes/electron_users');
+var electron_boardsRouter = require('./routes/electron_boards');
+var electrom_usersRouter = require('./routes/electrom_users');
+var electrom_boardsRouter = require('./routes/electrom_boards');
 
 const session = require('express-session');
 
@@ -31,8 +35,12 @@ var session_opt = {
 app.use(session(session_opt));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/boards', boardsRouter);
+app.use('/electri_users', electric_usersRouter);
+app.use('/electri_boards', electric_boardsRouter);
+app.use('/electron_users', electron_usersRouter);
+app.use('/electron_boards', electron_boardsRouter);
+app.use('/electrom_users', electrom_usersRouter);
+app.use('/electrom_boards', electrom_boardsRouter);
 
 
 // catch 404 and forward to error handler

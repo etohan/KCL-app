@@ -19,7 +19,7 @@
     </header>
     <div role="main">
         <p class="h4">Welcome to <%= login.name %>.</p>
-        <form method="post" action="/boards/add">
+        <form method="post" action="/electri_boards/add">
             <div class="row">
                 <div class="col-10">
                     <input type="text" name="msg" class="form-control">
@@ -30,16 +30,16 @@
 
         <table class="table mt-5">
             <% for(let i in content) { %>
-                <%- include('data_item', {val:content[i]}) %>
+                <%- include('electri_data_item', {val:content[i]}) %>
                     <% } %>
         </table>
 
         <ul class="pagination justify-content-center">
             <li class="page-item">
-                <a href="/boards/<%= page - 1 %>" class="page-link">&lt;&lt; prev</a>
+                <a href="/electri_boards/<%= page - 1 %>" class="page-link">&lt;&lt; prev</a>
             </li>
             <li class="page-item">
-                <a href="/boards/<%= page + 1 %>" class="page-link">Next &gt;&gt;</a>
+                <a href="/electri_boards/<%= page + 1 %>" class="page-link">Next &gt;&gt;</a>
             </li>
         </ul>
     </div>

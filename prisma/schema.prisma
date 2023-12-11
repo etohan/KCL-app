@@ -10,22 +10,65 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Board {
+model Electri_Board {
   id Int @id @default(autoincrement())
   message String
-  account User @relation(fields: [accountId], references: [id])
+  account Electri_User @relation(fields: [accountId], references: [id])
   accountId Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
-model User {
+model Electri_User {
   id Int @id @default(autoincrement())
   name String @unique
   pass String
   mail String?
+  number String?
   age Int @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  messages Board[]
+  messages Electri_Board[]
+}
+
+model Electron_Board {
+  id Int @id @default(autoincrement())
+  message String
+  account Electron_User @relation(fields: [accountId], references: [id])
+  accountId Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Electron_User {
+  id Int @id @default(autoincrement())
+  name String @unique
+  pass String
+  mail String?
+  number String?
+  age Int @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  messages Electron_Board[]
+}
+
+model Electrom_Board {
+  id Int @id @default(autoincrement())
+  message String
+  account Electrom_User @relation(fields: [accountId], references: [id])
+  accountId Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Electrom_User {
+  id Int @id @default(autoincrement())
+  name String @unique
+  pass String
+  mail String?
+  number String?
+  age Int @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  messages Electrom_Board[]
 }

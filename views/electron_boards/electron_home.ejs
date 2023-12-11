@@ -24,23 +24,25 @@
         </p>
         <table class="table mt-5">
             <% for(let i in content) { %>
-                <%- include('data_item', {val:content[i]}) %>
+                <%- include('electron_data_item', {val:content[i]}) %>
                     <% } %>
         </table>
 
         <ul class="pagination justify-content-center">
             <li class="page-item">
-                <a href="/boards/home/<%=userName %>/<%=accountId %>/<%= page - 1 %>" class="page-link">&lt;&lt;
+                <a href="/electron_boards/electron_home/<%=userName %>/<%=accountId %>/<%= page - 1 %>"
+                    class="page-link">&lt;&lt;
                     prev</a>
             </li>
             <li class="page-item">
-                <a href="/boards/home/<%=userName %>/<%=accountId %>/<%= page + 1 %>" class="page-link">Next
+                <a href="/electron_boards/electron_home/<%=userName %>/<%=accountId %>/<%= page + 1 %>"
+                    class="page-link">Next
                     &gt;&gt;</a>
             </li>
         </ul>
     </div>
     <div class="text-left">
-        <a href="/boards">&lt;&lt; Top.</a>
+        <a href="/electron_boards">&lt;&lt; Top.</a>
     </div>
 </body>
 

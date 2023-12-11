@@ -8,9 +8,9 @@ const pnum = 5; // ☆1ページ当たりの表示数
 
 // ログインのチェック
 const check = function (req, res) {
-    if (req.session.login == null) {
-        req.session.back = '/boards';
-        res.redirect('/users/login');
+    if (req.session.electrom_login == null) {
+        req.session.electrom_back = '/electrom_boards';
+        res.redirect('/electrom_users/electrom_login');
         return true;
     } else {
         return false;
@@ -19,14 +19,14 @@ const check = function (req, res) {
 
 // トップページ
 router.get('/', (req, res, next) => {
-    res.redirect('/boards/0');
+    res.redirect('/electrom_boards/0');
 });
 
 // トップページにページ番号をつけてアクセス
 router.get('/:page', (req, res, next) => {
     if (check(req, res)) { return };
     const pg = +req.params.page;
-    prisma.Board.findMany({
+    prisma.electrom_Board.findMany({
         skip: pg * pnum,
         take: pnum,
         orderBy: [
@@ -38,28 +38,28 @@ router.get('/:page', (req, res, next) => {
     }).then(brds => {
         var data = {
             title: 'Boards',
-            login: req.session.login,
+            login: req.session.electrom_login,
             content: brds,
             page: pg
         }
-        res.render('boards/index', data);
+        res.render('electrom_boards/electrom_index', data);
     });
 });
 
 // メッセージフォームの送信処理
 router.post('/add', (req, res, next) => {
     if (check(req, res)) { return };
-    prisma.Board.create({
+    prisma.electrom_Board.create({
         data: {
-            accountId: req.session.login.id,
+            accountId: req.session.electrom_login.id,
             message: req.body.msg
         }
     })
         .then(() => {
-            res.redirect('/boards');
+            res.redirect('/electrom_boards');
         })
         .catch((err) => {
-            res.redirect('/boards/add');
+            res.redirect('/electrom_boards/add');
         })
 });
 
@@ -68,7 +68,7 @@ router.get('/home/:user/:id/:page', (req, res, next) => {
     if (check(req, res)) { return };
     const id = +req.params.id;
     const pg = +req.params.page;
-    prisma.Board.findMany({
+    prisma.electrom_Board.findMany({
         where: { accountId: id },
         skip: pg * pnum,
         take: pnum,
@@ -81,13 +81,13 @@ router.get('/home/:user/:id/:page', (req, res, next) => {
     }).then(brds => {
         const data = {
             title: 'Boards',
-            login: req.session.login,
+            login: req.session.electrom_login,
             accountId: id,
             userName: req.params.user,
             content: brds,
             page: pg
         }
-        res.render('boards/home', data);
+        res.render('electrom_boards/electrom_home', data);
     });
 });
 
